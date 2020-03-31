@@ -1,0 +1,39 @@
+digraph D {
+	"Omni-wheels model" -> "Robot platform model"
+	"Robot platform model" -> {
+		"Equations of motion"
+		"Full Gazebo simulation"
+	}
+	"Equations of motion" -> {
+		"Simple microcontroller prototype"
+		"Full Gazebo simulation"
+		"Omni-wheels odometry algorithm"
+	}
+	"Gazebo environment setup" -> "Full Gazebo simulation"
+	"Omni-wheels odometry algorithm" -> {
+		"Omni-wheels odometry ROS package"
+		"Path tracking algorithm"
+	}
+	"Path tracking algorithm" -> "Path tracking ROS package"
+	"Path tracking ROS package" -> "Pathfinding simulation"
+	"Omni-wheels odometry ROS package" -> "Full Gazebo simulation"
+	"Basic Kalman" -> {
+		"Omni-wheels odometry algorithm"
+		"AHRS algorithm"
+	}
+	"IMU calibration" -> "AHRS algorithm"
+	"AHRS algorithm" -> {
+		"Omni-wheels odometry algorithm"
+		"AHRS ROS package"
+	}
+	"Pathfinding algorithm" -> "Pathfinding ROS package"
+	"Pathfinding ROS package" -> "Pathfinding simulation"
+	"Full Gazebo simulation" -> "Pathfinding simulation"
+
+	"Equations of motion" -> "Omni-wheels model"
+	[label="In-house wheels\nmodel", style=dotted]
+	"Equations of motion" -> "Robot platform model"
+	[label="Expand\nplatform\nstack", style=dotted]
+	"AHRS algorithm" -> "AHRS algorithm"
+	[label="Quaternion/EKF/Madgwick", style=dotted]
+}
